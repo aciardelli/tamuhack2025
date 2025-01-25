@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "scripts": {
+    "start": "concurrently \"cd src && node api.js\" \"cd src/toyota_pos && npm run dev\""
+  }
+}

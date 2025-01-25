@@ -10,7 +10,6 @@ mydriver = webdriver.Firefox()
 
 try:
     mydriver.get(url)
-    time.sleep(5)
     
     # First try to find and close the overlapping filters button
     try:
@@ -18,25 +17,45 @@ try:
         filters_btn.click()
     except:
         print("Could not find filters button")
+
+    time.sleep(5)
     
     wait = WebDriverWait(mydriver, 10)
-    tbody = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "tbody")))
-    rows = tbody.find_elements(By.TAG_NAME, "tr")
-    
-    for row in rows:
-        try:
-            clickable = row.find_element(By.CSS_SELECTOR, "td")
-            mydriver.execute_script("arguments[0].scrollIntoView(true);", clickable)
-            time.sleep(1)
-            mydriver.execute_script("arguments[0].click();", clickable)
-            print("clicked row element")
-            time.sleep(1)
-        except Exception as e:
-            print(f"Error clicking row: {e}")
-            continue
+    tbody = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "#carsheet")))
+    rows = tbody.find_elements(By.CSS_SELECTOR, "tr")
 
-except Exception as e:
-    print(f"Major error: {e}")
+
+    print(len(rows))
+
+    print(tbody)
+
+    first_row = rows[1]
+
+    print("first row: ", first_row.get_attribute("textContent"))
+
+    time.sleep(2)
+
+    mydriver.execute_script("arguments[0].click()", first_row)
+
+    time.sleep(5)
+
 finally:
-    if mydriver:
-        mydriver.quit()
+    print("done")
+    
+    # for row in rows:
+    #     try:
+    #         clickable = row.find_element(By.CSS_SELECTOR, "td")
+    #         mydriver.execute_script("arguments[0].scrollIntoView(true);", clickable)
+    #         time.sleep(1)
+    #         mydriver.execute_script("arguments[0].click();", clickable)
+    #         print("clicked row element")
+    #         time.sleep(1)
+    #     except Exception as e:
+    #         print(f"Error clicking row: {e}")
+    #         continue
+
+# except Exception as e:
+#     print(f"Major error: {e}")
+# finally:
+#     if mydriver:
+#         mydriver.quit()
