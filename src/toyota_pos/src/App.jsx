@@ -11,6 +11,7 @@ function App() {
   const [prompt, setPrompt] = useState("")
 
   const handlePrompt = (data) => {
+    console.log(data)
     setPrompt(data)
     setSearch(false)
   }

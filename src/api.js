@@ -12,7 +12,7 @@ const app = express()
 
 const PORT = 3000
 
-const context = "You provide SQL queries for a Toyota car search engine. Please provide a SQL query matching the prompt provided, and AFTER PROVIDING THE SQL QUERY, a brief description of why you queried it that way. Structure your responses in JSON, with `query` and `description`. Here is the prompt: "
+const context = "You provide SQL queries for a Toyota car search engine. Please provide a SQL query matching the prompt provided, and AFTER PROVIDING THE SQL QUERY, a brief description of why you queried it that way. Structure your responses in VALID JSON ONLY -- (DO NOT PREFACE IT WITH ```json`), with `query` and `description`. Here is the prompt: "
 
 app.use(bodyParser.json())
 
@@ -48,14 +48,18 @@ app.post("/api/userSearch", async (req, res) => {
       messages: [{ role: 'user', content: context + req.body.query}],
       model: 'gpt-4o-mini'
   });
-  const gpt_query = response.choices[0].message.content.query;
-  const gpt_explanation = response.choices[0].message.content.explanation;
+  const query = JSON.parse(response.choices[0].message.content)
+  const gpt_query = query.query
+  const gpt_description = query.description
+  console.log(gpt_query)
   try {
     const { rows } = await pool.query(gpt_query);
-    return res.json({
-      data: rows,
-      explanation: gpt_explanation
-    });
+    console.log("hi")
+    // const package = res.json({
+    //   data: rows,
+    //   explanation: gpt_description
+    // });
+    console.log(package)
   } catch (error) {
       console.error('Error querying database:', error);
       res.status(500).send('Internal server error');
