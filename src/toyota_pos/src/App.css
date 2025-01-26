@@ -1,7 +1,18 @@
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 400 to 700
+
+.instrument-sans-normal {
+  font-family: "Instrument Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
 body{
   background-color: #EFD9D6;
   overflow-x: hidden;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Instrument Sans";
 }
 
 .main-box{
@@ -10,55 +21,111 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   background-color: #EFD9D6;
 }
 
 .search-component{
+  position: relative;
   width:50%;
   height:50%;
-}
-
-.search-box{
-  margin-top: 5vh;
-  margin-bottom:1vh;
-  background-color:white;
-  border-style: none;
-  width: 100%;
-  height: 25%;
-  border-radius: 10px;
-  padding-left:2%;
-
-  font-size: 3vw;
-  color: #171B30
+  margin-top:100px;
 }
 
 
-.search-box::placeholder{
-  font-size: 3vw;
-  transform:translateY(45%);
-  color: #9A9A9A
+.hands{
+  position:absolute;
+  top:-120px;
+  z-index: 1;
+  left:100px;
+  height: 300px;
+  transform: translateY(-50);
+  pointer-events: none;
 }
 
-.search-box:focus{
-  outline:none
+.looking-down{
+  position:absolute;
+  z-index: 0;
+  top:-285px;
+  left: 35px;
+  pointer-events: none;
+  scale:0.75
 }
+
+@keyframes fly-up{
+  from{
+    transform: translateY(0px)
+    scale(1)
+  }
+  to{
+    transform: translateY(-300px)
+    scale(0.5)
+  }
+}
+
+
+.search-box {
+  z-index: 10;
+  margin: 5vh auto 1vh; 
+  background-color: #F2F2F2; /* Light gray for a clean, modern look */
+  border: 2px solid #E31C24; /* Toyota red for branding */
+  width: 90%; 
+  height: 15%; 
+  max-width: 600px; 
+  border-radius: 12px;
+  padding: 0 2%; 
+  font-size: 1.2rem; 
+  color: #171B30;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.search-box::placeholder {
+  font-size: 1.2rem; 
+  color: #6B6B6B; /* Neutral placeholder for a sleek touch */
+  text-align: center; 
+  font-style: italic; /* Adds a subtle stylistic flair */
+}
+
+.search-box:focus {
+  outline: none;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); 
+  transform: scale(1.02); 
+  border-color: #BB0E17; /* Darker Toyota red for focus state */
+}
+
 
 .suggestion-wrapper{
   display:flex;
   justify-content: center;
 }
 
-.suggestion-box{
+.suggestion-box {
   background-color: #DFECED;
-  width: fit-content;
-  margin: 0.5vw;
-  padding-left: 2%;
-  padding-right: 5%;
-  border-radius: 10px;
+  width: max-content;
+  margin: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.suggestion-box p{
-  color: #868686
+.suggestion-box p {
+  color: #868686;
+  margin: 0;
+  line-height: 1.5;
+}
+
+@keyframes excited{
+  from{transform: scale(1);}
+  to{transform: scale(1.1);}
+}
+
+.suggestion-box:hover{
+  cursor: pointer;
+  animation: excited 1.0s forwards
 }
 
 .list-component{
@@ -68,10 +135,19 @@ body{
   background-color: #EFD9D6;
 }
 
+@keyframes fade-in{
+  from{opacity:0}
+  to{opacity:100}
+}
+
+
 .header{
   font-size: 8vmin;
   color: #272D4E;
-  margin-left: 4%;
+  margin-left: 0;
+
+  animation-name: fade-in;
+  animation-duration: 0.5s;
 }
 
 .why-wrapper{
@@ -81,15 +157,35 @@ body{
   width:100%;
 }
 
+@keyframes fly-from-left{
+  from{transform:translateX(-400px)}
+  to{transform:translateX(0)}
+}
+
+.why-img{
+  scale:1;
+  width:20%;
+  object-fit:cover;
+  animation-name: fly-from-left;
+  animation-duration: 0.5s;
+}
+
 .why-center{
   display: flex;
   justify-content: center;
-  width: 80%;
+  width: 90%;
 }
 
 .why-p{
   font-size: 3vmin;
-  color: #868686
+  color: #868686;
+
+  animation-name: fade-in;
+  animation-duration:0.5s;
+  background-color: white;
+  border-radius: 2rem;
+  padding: 2rem;
+  opacity: 80%;
 }
 
 .picks-wrapper {
@@ -110,25 +206,133 @@ body{
 .wrapper-wrapper{
   height:90%;
   width:100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 70% 30%;
+}
+
+@keyframes pop-in{
+  from{transform:scale(0.1); opacity: 0;}
+  to{transform:scale(1); opacity: 100;}
 }
 
 .car-cell{
   height: 80%;
-  background-color: #f4feff;
+  background-color: #ffffff;
   border-radius: 10px;
+
+  animation-name: pop-in;
+  animation-duration: 0.5s
+}
+
+.car-cell.visible{
+  transform: scale(1);
+}
+
+.car-name{
+  font-weight: 700;
+  font-size: 3.5vmin;
+}
+
+.car-price{
+  color: #62AF6E;
+  font-size: 3.2vmin;
+  margin-top:0px;
 }
 
 .information-wrapper{
-  width: 60%;
-  height: 100%;
   margin-left:2%;
+  grid-column-start: 1;
+  grid-column-end: 2;
+
+  grid-row-start: 1;
+  grid-row-end:2;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.information-wrapper h3 {
+  margin: 0.75rem;
+}
+
+.picture-wrapper{
+  display: flex;
+  align-items: center;
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.finance-wrapper{
+  background-color: white;
+  height:100%;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+
+  display:grid;
+  grid-template-columns: 45% 10% 45%;
+  grid-template-rows: 100%;
+}
+
+.finance-term{
+  height: 100%;
+  grid-column-start: 1;
+  grid-column-end: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.or-wrapper{
+  grid-column-start: 2;
+  grid-column-end: 3;
+
+  display: flex;
+  align-items: center;
+  color: red;
+  font-size: 5vmin;
+}
+
+.lease-term{
+  grid-column-start: 3;
+  grid-column-end: 4;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.normal{
+ color:#9A9A9A; 
+ height:2%;
+}
+
+.finance-term-text{
+  font-size: 3vmin;
+  color: red;
+  height:5%;
+}
+
+.finance-payment-text{
+  font-size:5vmin;
+  color:green;
+  height:2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer{
   height: 10%;
   width: 100%;
   /* background-color: purple; */
+  background: linear-gradient(to bottom, #ffffff, #cccccc);
   border-top: #171B30;
   border-top-width: 1px;
   display: flex;
@@ -144,33 +348,88 @@ body{
 
 .head{
   /* background-color: purple; */
-  width: 100vw;
+  width: 100%;
   height: 10vh;
   display: flex;
+  margin-top: 150px;
   justify-content: center;
 }
 
 
-.search-box-mini{
-  margin-top:50px;
-  background-color:white;
-  border-style: none;
-  width: 40%;
-  height: 70%;
-  border-radius: 10px;
-  padding-left:2%;
-
-  font-size: 3vw;
-  color: #171B30
+.search-box-mini {
+  z-index: 10;
+  margin: 5vh auto 1vh; 
+  margin-top: 5rem;
+  background-color: #F2F2F2; 
+  border: 2px solid #E31C24; 
+  width: 75%; 
+  height: 50%;
+  max-width: 300px; 
+  border-radius: 10px; 
+  padding: 0 2%; 
+  font-size: 1rem; 
+  color: #171B30; 
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-
-.search-box-mini::placeholder{
-  font-size: 3vw;
-  transform:translateY(45%);
-  color: #9A9A9A
+.search-box-mini::placeholder {
+  font-size: 1rem; 
+  color: #6B6B6B; 
+  text-align: center; 
+  font-style: italic; 
 }
 
-.search-box-mini:focus{
-  outline:none
+.search-box-mini:focus {
+  outline: none;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); 
+  transform: scale(1.02); 
+  border-color: #BB0E17; 
+}
+
+.loading-wrapper{
+  margin: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.load-wrapper-mini{
+  margin-top:85px;
+  margin-left:30px;
+}
+
+.back-button{
+  position:fixed;
+  top:0;
+  left:0;
+  font-size: 10vmin;
+  height: 10vmin;
+  width: 10vmin;
+}
+
+.back-button:hover{
+  cursor: pointer;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  scale: 1.5;
+  width: 60px;
+  aspect-ratio: 2;
+  --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
+  background: 
+    var(--_g) 0%   50%,
+    var(--_g) 50%  50%,
+    var(--_g) 100% 50%;
+  background-size: calc(100%/3) 50%;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {
+    20%{background-position:0%   0%, 50%  50%,100%  50%}
+    40%{background-position:0% 100%, 50%   0%,100%  50%}
+    60%{background-position:0%  50%, 50% 100%,100%   0%}
+    80%{background-position:0%  50%, 50%  50%,100% 100%}
 }

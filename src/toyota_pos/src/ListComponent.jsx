@@ -3,14 +3,30 @@ import CarCell from "./CarCell"
 import { useEffect, useState } from "react";
 import { CanceledError } from "axios";
 
-function ListComponent({message, data}){
-
-    const cars = [1,2,3,4,5];
+function ListComponent({message = "", data = []}){
+    const [cars, setCars] = useState(data);
+    const [explanation, setExplanation] = useState(message)
     const [wrapperHeight, setWrapperHeight] = useState(400)
 
-    const handleGetData = (data) => {
-        console.log(data)
-        data = data
+    const handleGetData = (newData) => {
+        console.log(newData)
+        setCars(newData.data)
+        setExplanation(newData.explanation)
+    }
+
+    useEffect(() => {
+        console.log("hello")
+    }, [cars])
+
+    const handleLoadCars = () => {
+        console.log(cars.length)
+        if(cars.length > 0){
+            return cars.map((car, index) => {
+                return (<CarCell data={car} key={index} order={index}></CarCell>)
+            })
+        }
+
+        return []
     }
 
     return(
@@ -18,14 +34,14 @@ function ListComponent({message, data}){
             <div className="head">
                 <SearchBar listenForPrompt={handleGetData} mini={true}></SearchBar>
             </div>
-            <h2 className = "header">here's why</h2>
+            <h2 className = "header">Here's Why</h2>
             <div className="why-wrapper">
                 <div className="why-center"> 
-                    <div className="why-img">img goes here</div>
-                    <p className="why-p">{message}</p>
+                    <img src="salesman_2.png"className="why-img"></img>
+                    <p className="why-p">{explanation}</p>
                 </div>
             </div>
-            <h2 className="header">top picks</h2>
+            <h2 className="header">Top Picks</h2>
             <div className="picks-wrapper" style={{height: wrapperHeight}}>
                 {/* <div className="car-row">
                  {cars.map((car, index) => { 
@@ -33,9 +49,10 @@ function ListComponent({message, data}){
                 })}    
                 </div>  */}
                 <div className="car-row">
-                    {data.map((car, index) => {
+                    {handleLoadCars()}
+                    {/* {cars.map((car, index) => {
                         return (<CarCell data={car} key={index}></CarCell>)
-                    })}
+                    })} */}
                 </div>
             </div>
         </div>

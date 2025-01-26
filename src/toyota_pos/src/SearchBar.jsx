@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 
-function SearchBar({ listenForPrompt, mini }){
+function SearchBar({ listenForPrompt, mini, loadSignal }){
     const [text, setText] = useState("")
     const [opacity, setOpacity] = useState(0)
+    const [anim, setAnim] = useState("")
+    const [load, setLoad] = useState(false)
 
     const [prompt, setPrompt] = useState("")
 
@@ -18,6 +20,11 @@ function SearchBar({ listenForPrompt, mini }){
     }, [])
 
     const handleSubmit = async () => {
+        if(loadSignal){
+            loadSignal()
+        }else{
+            setLoad(true)
+        }
         console.log("submitting")
         try{
             const response = await fetch("http://localhost:3000/api/userSearch", {
@@ -27,8 +34,11 @@ function SearchBar({ listenForPrompt, mini }){
                 },
                 body: JSON.stringify({ "query": text })
             })
+
+            setAnim("fly-up 0.5s forwards")
             const data = await response.json()
             listenForPrompt(data)
+            setLoad(false)
         } catch(error){
             console.error("Error: ", error)
         }
@@ -45,11 +55,16 @@ function SearchBar({ listenForPrompt, mini }){
     }
     if(!mini){
         return(
-            <input placeholder = "Ask me about cars" className = "search-box" onChange={handleInputChange} style={{ opacity: opacity }} onKeyDown={handleKeyDown}></input>
+            <input placeholder = "Describe your needs and I'll help find the right car" className = "search-box" onChange={handleInputChange} style={{ opacity: opacity, animation: anim }} onKeyDown={handleKeyDown}></input>
         )
     }else{
         return(
-            <input type="text" className="search-box-mini" onChange={handleInputChange} onKeyDown={handleKeyDown} />
+            <>
+            <input type="text" className="search-box-mini" onChange={handleInputChange} onKeyDown={handleKeyDown} placeholder="Not quite right? Search again"/>
+            {load && <div className="load-wrapper-mini">
+                <div className="loader"></div>
+            </div>}
+            </>
         )
     }
     

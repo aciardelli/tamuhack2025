@@ -5,7 +5,7 @@ function SearchSuggestions(animationFinished){
         <>
         <div className = "suggestion-wrapper">
             <div className="suggestion-box">
-                <p>cars similar to my 2009 buick lacrosse</p>
+                <p>best cars for family travel</p>
             </div>
             <div className="suggestion-box">
                 <p>highest horsepower per dollar</p>
@@ -13,10 +13,10 @@ function SearchSuggestions(animationFinished){
         </div>
         <div className="suggestion-wrapper">
             <div className="suggestion-box">
-                <p>best for a family of 5</p>
+                <p>cheapest eco friendly cars</p>
             </div>
             <div className="suggestion-box">
-                <p>v8 engines</p>
+                <p>4 door trucks</p>
             </div>
         </div>
         </>
