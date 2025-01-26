@@ -6,7 +6,7 @@ import SearchComponent from './SearchComponent'
 import ListComponent from './ListComponent'
 function App() {
   const [count, setCount] = useState(0)
-  const [search, setSearch] = useState(true)
+  const [search, setSearch] = useState(false)
 
   const [prompt, setPrompt] = useState("")
 
