@@ -8,7 +8,7 @@ function CarCell({data, order}){
         if(expanded){
             const intervalId = setInterval(() => {
                 setCellHeight((prevHeight) => {
-                    if(prevHeight < 600){
+                    if(prevHeight < 750){
                         return prevHeight + 10
                     }else{
                         clearInterval(intervalId)
@@ -65,6 +65,21 @@ function CarCell({data, order}){
                 <div className="picture-wrapper">
                     <img src={data.image_url} alt="an image" />
                 </div>
+
+                {expanded && <div className="finance-wrapper">
+                    <div className="finance-term">
+                        <p className = "finance-term-text">{data.finance_term ? data.finance_term : 60}</p>
+                        <p>months</p>
+                        <p>For just</p>
+                        <p className="finance-payment-text">${data.monthly_finance ? data.monthly_finance : 754.19}</p>
+                    </div>
+                    <div className="lease-term">
+                        <p className="lease-term-text">{data.lease_term ? data.lease_term : 36}</p>
+                        <p>months</p>
+                        <p>For just</p>
+                        <p className="lease-payment-text">${data.monthly_lease ? data.monthly_lease : 263.45}</p>
+                    </div>
+                </div>}
             </div>
             <div className="footer" onClick={handleExpand}>
                 <p onClick={handleExpand}>v</p>
