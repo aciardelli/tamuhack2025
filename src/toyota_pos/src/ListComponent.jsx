@@ -9,6 +9,9 @@ function ListComponent({message, carsToDisplay}){
 
     return(
         <div className="list-component">
+            <div className="head">
+                <SearchBar mini={true}></SearchBar>
+            </div>
             <h2 className = "header">here's why</h2>
             <div className="why-wrapper">
                 <div className="why-center"> 
