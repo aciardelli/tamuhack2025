@@ -20,7 +20,7 @@ function CarCell({data}){
             <div className="wrapper-wrapper">
                 <div className="information-wrapper">
                     <h2 className="car-name">{data.model_year} Toyota {data.car_title}</h2>
-                    <h2 className="car-price">{parseFloat(data.msrp).toLocaleString('en-US', {
+                    <h2 className="car-price">{parseFloat(data.msrp > 0 ? data.msrp : data.shown_price).toLocaleString('en-US', {
                         style: 'currency',
                         currency: 'USD',
                         minimumFractionDigits: 0,
