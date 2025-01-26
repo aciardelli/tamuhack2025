@@ -34,14 +34,14 @@ function ListComponent({message = "", data = []}){
             <div className="head">
                 <SearchBar listenForPrompt={handleGetData} mini={true}></SearchBar>
             </div>
-            <h2 className = "header">here's why</h2>
+            <h2 className = "header">Here's Why</h2>
             <div className="why-wrapper">
                 <div className="why-center"> 
                     <img src="salesman_2.png"className="why-img"></img>
                     <p className="why-p">{explanation}</p>
                 </div>
             </div>
-            <h2 className="header">top picks</h2>
+            <h2 className="header">Top Picks</h2>
             <div className="picks-wrapper" style={{height: wrapperHeight}}>
                 {/* <div className="car-row">
                  {cars.map((car, index) => { 
