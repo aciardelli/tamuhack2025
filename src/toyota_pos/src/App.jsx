@@ -17,12 +17,17 @@ function App() {
     setSearch(false)
   }
 
+  const handleGoHome = () => {
+    setSearch(true)
+  }
+
   return (
     <>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
     </style>
       <div className = "main-box"> 
+        {!search && <div className="back-button" onClick={handleGoHome}>⌂</div>}
         {search ? <SearchComponent listenForPrompt={handlePrompt}></SearchComponent> : <ListComponent message={prompt.explanation}data={prompt.data}></ListComponent>} 
       </div>
     </>
