@@ -60,9 +60,9 @@ function SearchBar({ listenForPrompt, mini, loadSignal }){
         return(
             <>
             <input type="text" className="search-box-mini" onChange={handleInputChange} onKeyDown={handleKeyDown} />
-            <div className="load-wrapper">
+            {load && <div className="load-wrapper-mini">
                 <div className="loader"></div>
-            </div>
+            </div>}
             </>
         )
     }

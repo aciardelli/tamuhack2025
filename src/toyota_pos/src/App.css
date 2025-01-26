@@ -357,6 +357,11 @@ body{
   justify-content: center;
 }
 
+.load-wrapper-mini{
+  margin-top:85px;
+  margin-left:30px;
+}
+
 /* HTML: <div class="loader"></div> */
 .loader {
   scale: 1.5;
