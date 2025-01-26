@@ -172,6 +172,10 @@ body{
 
   animation-name: fade-in;
   animation-duration:0.5s;
+  background-color: white;
+  border-radius: 2rem;
+  padding: 2rem;
+  opacity: 80%;
 }
 
 .picks-wrapper {
@@ -340,6 +344,7 @@ body{
 .search-box-mini {
   z-index: 10;
   margin: 5vh auto 1vh; 
+  margin-top: 5rem;
   background-color: #F2F2F2; 
   border: 2px solid #E31C24; 
   width: 75%; 
