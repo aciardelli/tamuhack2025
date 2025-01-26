@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-function SearchBar({ listenForPrompt, mini }){
+function SearchBar({ listenForPrompt, mini, loadSignal }){
     const [text, setText] = useState("")
     const [opacity, setOpacity] = useState(0)
     const [anim, setAnim] = useState("")
@@ -19,6 +19,7 @@ function SearchBar({ listenForPrompt, mini }){
     }, [])
 
     const handleSubmit = async () => {
+        loadSignal()
         console.log("submitting")
         try{
             const response = await fetch("http://localhost:3000/api/userSearch", {

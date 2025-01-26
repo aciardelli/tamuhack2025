@@ -127,7 +127,7 @@ body{
 .header{
   font-size: 8vmin;
   color: #272D4E;
-  margin-left: 4%;
+  margin-left: 0;
 
   animation-name: fade-in;
   animation-duration: 0.5s;
@@ -331,7 +331,7 @@ body{
 
 
 .search-box-mini{
-  margin-top:50px;
+  margin-top:70px;
   background-color:white;
   border-style: none;
   width: 40%;
