@@ -4,8 +4,6 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
-console.log(process.env.OPENAI_API_KEY)
-
 const { Pool } = require('pg')
 
 const app = express()
@@ -49,7 +47,7 @@ app.get("/api/sayHi", (req, res) => {
 
 app.post("/api/userSearch", async (req, res) => {
   const response = await client.chat.completions.create({
-    messages: [{ role: 'user', content: context + req.body.query }],
+    messages: [{ role: 'user', content: context + req.body.query}],
     model: 'gpt-4o'
   });
 
