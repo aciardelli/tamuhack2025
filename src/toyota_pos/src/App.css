@@ -14,11 +14,46 @@ body{
 }
 
 .search-component{
+  position: relative;
   width:50%;
   height:50%;
+  margin-top:100px;
 }
 
+
+.hands{
+  position:absolute;
+  top:-120px;
+  z-index: 1;
+  left:100px;
+  height: 300px;
+  transform: translateY(-50);
+  pointer-events: none;
+}
+
+.looking-down{
+  position:absolute;
+  z-index: 0;
+  top:-285px;
+  left: 35px;
+  pointer-events: none;
+  scale:0.75
+}
+
+@keyframes fly-up{
+  from{
+    transform: translateY(0px)
+    scale(1)
+  }
+  to{
+    transform: translateY(-300px)
+    scale(0.5)
+  }
+}
+
+
 .search-box{
+  z-index:10;
   margin-top: 5vh;
   margin-bottom:1vh;
   background-color:white;
@@ -29,7 +64,10 @@ body{
   padding-left:2%;
 
   font-size: 3vw;
-  color: #171B30
+  color: #171B30;
+/* 
+  animation-name: fly-up;
+  animation-duration: 0.5s; */
 }
 
 
@@ -68,10 +106,19 @@ body{
   background-color: #EFD9D6;
 }
 
+@keyframes fade-in{
+  from{opacity:0}
+  to{opacity:100}
+}
+
+
 .header{
   font-size: 8vmin;
   color: #272D4E;
   margin-left: 4%;
+
+  animation-name: fade-in;
+  animation-duration: 0.5s;
 }
 
 .why-wrapper{
@@ -81,15 +128,31 @@ body{
   width:100%;
 }
 
+@keyframes fly-from-left{
+  from{transform:translateX(-400px)}
+  to{transform:translateX(0)}
+}
+
+.why-img{
+  scale:1;
+  width:20%;
+  object-fit:cover;
+  animation-name: fly-from-left;
+  animation-duration: 0.5s;
+}
+
 .why-center{
   display: flex;
   justify-content: center;
-  width: 80%;
+  width: 90%;
 }
 
 .why-p{
   font-size: 3vmin;
-  color: #868686
+  color: #868686;
+
+  animation-name: fade-in;
+  animation-duration:0.5s;
 }
 
 .picks-wrapper {
@@ -113,16 +176,44 @@ body{
   display: flex;
 }
 
+@keyframes pop-in{
+  from{transform:scale(0.1); opacity: 0;}
+  to{transform:scale(1); opacity: 100;}
+}
+
 .car-cell{
   height: 80%;
-  background-color: #f4feff;
+  background-color: #ffffff;
   border-radius: 10px;
+
+  animation-name: pop-in;
+  animation-duration: 0.5s
+}
+
+.car-cell.visible{
+  transform: scale(1);
+}
+
+.car-name{
+  font-weight: bolder;
+  font-size: 3.5vmin;
+}
+
+.car-price{
+  color: #62AF6E;
+  font-size: 3.2vmin;
+  margin-top:0px;
 }
 
 .information-wrapper{
   width: 60%;
   height: 100%;
   margin-left:2%;
+}
+
+.picture-wrapper{
+  display: flex;
+  align-items: center;
 }
 
 .footer{
@@ -144,9 +235,10 @@ body{
 
 .head{
   /* background-color: purple; */
-  width: 100vw;
+  width: 100%;
   height: 10vh;
   display: flex;
+  margin-top: 150px;
   justify-content: center;
 }
 
@@ -174,3 +266,4 @@ body{
 .search-box-mini:focus{
   outline:none
 }
+

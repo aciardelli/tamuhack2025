@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-function CarCell({data}){
+function CarCell({data, order}){
     const [expanded, setExpanded] = useState(false)
     const [cellHeight, setCellHeight] = useState(300)
 
@@ -16,7 +16,7 @@ function CarCell({data}){
         setExpanded(!expanded)
     }
     return(
-        <div className="car-cell" style={{height: cellHeight}}>
+        <div className="car-cell" style={{height: cellHeight }}>
             <div className="wrapper-wrapper">
                 <div className="information-wrapper">
                     <h2 className="car-name">{data.model_year} Toyota {data.car_title}</h2>
@@ -35,7 +35,7 @@ function CarCell({data}){
                     {data.is_subcompact && <h2 className = "car-type">Subcompact</h2>}
                     {data.highway_mpg > 0 && <h2 className="mpg">{data.highway_mpg} MPG</h2>}
                     {data.horsepower > 0 && <h2 className="horsepower">{data.horsepower} Horsepower</h2>}
-                    {expanded && <h2 className="cylinders">{data.cylinders} Cylinders</h2>}
+                    {data.cylinders > 0 && expanded && <h2 className="cylinders">{data.cylinders} Cylinders</h2>}
                     {data.is_4wd && expanded && <h2 className = "wheel-drive">4 Wheel Drive</h2>}
                     {data.is_fwd && expanded && <h2 className = "wheel-drive">Front Wheel Drive</h2>}
                     {data.is_rwd && expanded && <h2 className = "wheel-drive">Rear Wheel Drive</h2>}

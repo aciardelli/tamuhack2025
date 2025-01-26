@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 function SearchBar({ listenForPrompt, mini }){
     const [text, setText] = useState("")
     const [opacity, setOpacity] = useState(0)
+    const [anim, setAnim] = useState("")
 
     const [prompt, setPrompt] = useState("")
 
@@ -27,6 +28,8 @@ function SearchBar({ listenForPrompt, mini }){
                 },
                 body: JSON.stringify({ "query": text })
             })
+
+            setAnim("fly-up 0.5s forwards")
             const data = await response.json()
             listenForPrompt(data)
         } catch(error){
@@ -45,7 +48,7 @@ function SearchBar({ listenForPrompt, mini }){
     }
     if(!mini){
         return(
-            <input placeholder = "Ask me about cars" className = "search-box" onChange={handleInputChange} style={{ opacity: opacity }} onKeyDown={handleKeyDown}></input>
+            <input placeholder = "Ask me about cars" className = "search-box" onChange={handleInputChange} style={{ opacity: opacity, animation: anim }} onKeyDown={handleKeyDown}></input>
         )
     }else{
         return(

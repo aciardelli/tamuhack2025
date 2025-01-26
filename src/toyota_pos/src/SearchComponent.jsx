@@ -12,6 +12,8 @@ function SearchComponent({ listenForPrompt }){
 
     return(
         <div className = "search-component">
+            {/* <img src="hand_render.png" className="hands"></img> */}
+            <img src="salesman.png" className="looking-down"></img>
             <SearchBar listenForPrompt={handlePromptReceived}></SearchBar>
             <SearchSuggestions></SearchSuggestions>
         </div>
