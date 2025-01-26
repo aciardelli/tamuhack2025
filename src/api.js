@@ -49,45 +49,34 @@ app.get("/api/sayHi", (req, res) => {
 
 app.post("/api/userSearch", async (req, res) => {
   const response = await client.chat.completions.create({
-    messages: [{ role: 'user', content: context + req.body.query}],
-    model: 'gpt-4o-mini'
+    messages: [{ role: 'user', content: context + req.body.query }],
+    model: 'gpt-4o'
   });
-  
+
   let query = JSON.parse(response.choices[0].message.content);
   let gpt_query = query.query;
   console.log(gpt_query)
   let gpt_description = query.description;
-  
+
   try {
     let { rows } = await pool.query(gpt_query);
-    
+
     // If no results, try loosening constraints
     if (!rows || rows.length === 0) {
       console.log("Expanding")
-      // Modify the query to expand ranges by 20%
-      gpt_query = gpt_query.replace(
-        /([<>]=?\s*)(\d+)/g,
-        (match, operator, value) => {
-          const num = parseFloat(value);
-          return operator.includes('<') ? 
-            `${operator}${Math.ceil(num * 1.2)}` : 
-            `${operator}${Math.floor(num * 0.8)}`;
+      const response2 = await client.chat.completions.create({
+        messages: [{ role: 'user', content: 'loosen the constraints on this: '+ gpt_query + req.body.query}],
+        model: 'gpt-4o'
       });
-      
-      // Try the modified query
-      const relaxedResult = await pool.query(gpt_query);
-      rows = relaxedResult.rows;
-      
-      if (rows && rows.length > 0) {
-        gpt_description += " (Including similar options with expanded criteria)";
-      }
+      let query2 = JSON.parse(response2.choices[0].message.content);
+      let { rows } = await pool.query(query2.query);
     }
-    
+
     res.json({
       data: rows || [],
       explanation: gpt_description
     });
-    
+
   } catch (error) {
     console.error('Error querying database:', error);
     res.status(500).send('Internal server error');
