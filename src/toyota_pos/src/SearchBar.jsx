@@ -55,12 +55,12 @@ function SearchBar({ listenForPrompt, mini, loadSignal }){
     }
     if(!mini){
         return(
-            <input placeholder = "Ask me about cars" className = "search-box" onChange={handleInputChange} style={{ opacity: opacity, animation: anim }} onKeyDown={handleKeyDown}></input>
+            <input placeholder = "Describe your needs and I'll help find the right car" className = "search-box" onChange={handleInputChange} style={{ opacity: opacity, animation: anim }} onKeyDown={handleKeyDown}></input>
         )
     }else{
         return(
             <>
-            <input type="text" className="search-box-mini" onChange={handleInputChange} onKeyDown={handleKeyDown} />
+            <input type="text" className="search-box-mini" onChange={handleInputChange} onKeyDown={handleKeyDown} placeholder="Not quite right? Search again"/>
             {load && <div className="load-wrapper-mini">
                 <div className="loader"></div>
             </div>}
