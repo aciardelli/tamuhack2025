@@ -118,6 +118,16 @@ body{
   line-height: 1.5;
 }
 
+@keyframes excited{
+  from{transform: scale(1);}
+  to{transform: scale(1.1);}
+}
+
+.suggestion-box:hover{
+  cursor: pointer;
+  animation: excited 1.0s forwards
+}
+
 .list-component{
   display:flex;
   width:95vw;
@@ -377,6 +387,8 @@ body{
   top:0;
   left:0;
   font-size: 10vmin;
+  height: 10vmin;
+  width: 10vmin;
 }
 
 .back-button:hover{

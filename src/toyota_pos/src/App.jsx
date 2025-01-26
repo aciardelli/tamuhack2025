@@ -27,7 +27,7 @@ function App() {
       @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
     </style>
       <div className = "main-box"> 
-        {!search && <div className="back-button" onClick={handleGoHome}>⌂</div>}
+        {!search && <img src = {"salesman_icon.png"}className="back-button" onClick={handleGoHome}></img>}
         {search ? <SearchComponent listenForPrompt={handlePrompt}></SearchComponent> : <ListComponent message={prompt.explanation}data={prompt.data}></ListComponent>} 
       </div>
     </>
