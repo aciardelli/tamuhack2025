@@ -63,7 +63,7 @@ body{
 
 .list-component{
   display:flex;
-  width:100vw;
+  width:95vw;
   flex-direction: column;
   background-color: #EFD9D6;
 }
@@ -114,8 +114,7 @@ body{
 }
 
 .car-cell{
-  height: 100%;
-  width: 35%;
+  height: 80%;
   background-color: #f4feff;
   border-radius: 10px;
 }
@@ -126,6 +125,19 @@ body{
   height: 100%;
   margin-left:2%;
 }
+
+.footer{
+  height: 10%;
+  width: 100%;
+  /* background-color: purple; */
+  border-top: #171B30;
+  border-top-width: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: bold;
+}
+
 
 .head{
   /* background-color: purple; */

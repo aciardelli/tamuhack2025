@@ -18,6 +18,7 @@ function SearchBar({listenForPrompt, mini}){
     }, [])
 
     const handleSubmit = async () => {
+        console.log("submitting")
         try{
             const response = await fetch("http://localhost:3000/api/userSearch", {
                 method: 'POST',
@@ -27,7 +28,6 @@ function SearchBar({listenForPrompt, mini}){
                 body: JSON.stringify({ "query": text })
             })
             const data = await response.json()
-            console.log(typeof data.choices[0].message.content)
             listenForPrompt(data.choices[0].message.content)
         } catch(error){
             console.error("Error: ", error)
