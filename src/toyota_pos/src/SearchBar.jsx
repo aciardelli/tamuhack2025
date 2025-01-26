@@ -38,6 +38,7 @@ function SearchBar({ listenForPrompt, mini, loadSignal }){
             setAnim("fly-up 0.5s forwards")
             const data = await response.json()
             listenForPrompt(data)
+            setLoad(false)
         } catch(error){
             console.error("Error: ", error)
         }
