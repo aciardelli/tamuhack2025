@@ -24,6 +24,8 @@ const pool = new Pool({
   port: process.env.PG_PORT,
 });
 
+console.log(pool)
+
 const cors = require('cors');
 app.use(cors({
   origin: 'http://localhost:5173', // Your frontend origin
