@@ -6,9 +6,28 @@ function CarCell({data, order}){
 
     useEffect(() => {
         if(expanded){
-            setCellHeight(450)
+            const intervalId = setInterval(() => {
+                setCellHeight((prevHeight) => {
+                    if(prevHeight < 600){
+                        return prevHeight + 10
+                    }else{
+                        clearInterval(intervalId)
+                        return prevHeight
+                    }
+                })
+            })
+            // setCellHeight(450)
         }else{
-            setCellHeight(300)
+            const intervalId = setInterval(() => {
+                setCellHeight((prevHeight) => {
+                    if(prevHeight > 300){
+                        return prevHeight - 10
+                    }else{
+                        clearInterval(intervalId)
+                        return prevHeight
+                    }
+                })
+            })
         }
     },[expanded])
 
@@ -34,7 +53,7 @@ function CarCell({data, order}){
                     {data.is_standard_suv && <h2 className = "car-type">Standard SUV</h2>}
                     {data.is_subcompact && <h2 className = "car-type">Subcompact</h2>}
                     {data.highway_mpg > 0 && <h2 className="mpg">{data.highway_mpg} MPG</h2>}
-                    {data.horsepower > 0 && <h2 className="horsepower">{data.horsepower} Horsepower</h2>}
+                    {expanded && data.horsepower > 0 && <h2 className="horsepower">{data.horsepower} Horsepower</h2>}
                     {data.cylinders > 0 && expanded && <h2 className="cylinders">{data.cylinders} Cylinders</h2>}
                     {data.is_4wd && expanded && <h2 className = "wheel-drive">4 Wheel Drive</h2>}
                     {data.is_fwd && expanded && <h2 className = "wheel-drive">Front Wheel Drive</h2>}
