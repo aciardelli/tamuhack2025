@@ -6,9 +6,9 @@ import SearchComponent from './SearchComponent'
 import ListComponent from './ListComponent'
 function App() {
   const [count, setCount] = useState(0)
-  const [search, setSearch] = useState(false)
+  const [search, setSearch] = useState(true)
 
-  const [prompt, setPrompt] = useState("")
+  const [prompt, setPrompt] = useState([])
 
   const handlePrompt = (data) => {
     console.log(data)
@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <div className = "main-box"> 
-        {search ? <SearchComponent listenForPrompt={handlePrompt}></SearchComponent> : <ListComponent message={prompt}></ListComponent>}
+        {search ? <SearchComponent listenForPrompt={handlePrompt}></SearchComponent> : <ListComponent message={prompt.explanation}data={prompt.data}></ListComponent>}
       </div>
     </>
   )

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-function SearchBar({listenForPrompt, mini}){
+function SearchBar({ listenForPrompt, mini }){
     const [text, setText] = useState("")
     const [opacity, setOpacity] = useState(0)
 
@@ -28,7 +28,7 @@ function SearchBar({listenForPrompt, mini}){
                 body: JSON.stringify({ "query": text })
             })
             const data = await response.json()
-            listenForPrompt(data.choices[0].message.content)
+            listenForPrompt(data)
         } catch(error){
             console.error("Error: ", error)
         }

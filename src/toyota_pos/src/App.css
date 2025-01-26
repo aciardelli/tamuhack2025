@@ -120,7 +120,6 @@ body{
 }
 
 .information-wrapper{
-  background-color: pink;
   width: 60%;
   height: 100%;
   margin-left:2%;
@@ -136,6 +135,10 @@ body{
   justify-content: center;
   align-items: center;
   font-style: bold;
+}
+
+.footer:hover{
+  cursor: pointer;
 }
 
 
