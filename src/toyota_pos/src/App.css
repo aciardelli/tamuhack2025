@@ -1,7 +1,18 @@
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 400 to 700
+
+.instrument-sans-normal {
+  font-family: "Instrument Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
 body{
   background-color: #EFD9D6;
   overflow-x: hidden;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Instrument Sans";
 }
 
 .main-box{
@@ -10,6 +21,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   background-color: #EFD9D6;
 }
 
@@ -197,7 +209,7 @@ body{
 }
 
 .car-name{
-  font-weight: bolder;
+  font-weight: 700;
   font-size: 3.5vmin;
 }
 
@@ -230,7 +242,7 @@ body{
 }
 
 .finance-wrapper{
-  /* background-color: blue; */
+  background-color: white;
   height:100%;
   grid-column-start: 1;
   grid-column-end: 3;
@@ -243,11 +255,51 @@ body{
 }
 
 .finance-term{
+  height: 100%;
   grid-column-start: 1;
   grid-column-end: 2;
 
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.or-wrapper{
+  grid-column-start: 2;
+  grid-column-end: 3;
+
+  display: flex;
+  align-items: center;
+  color: red;
+  font-size: 5vmin;
+}
+
+.lease-term{
+  grid-column-start: 3;
+  grid-column-end: 4;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.normal{
+ color:#9A9A9A; 
+ height:2%;
+}
+
+.finance-term-text{
+  font-size: 3vmin;
+  color: red;
+  height:5%;
+}
+
+.finance-payment-text{
+  font-size:5vmin;
+  color:green;
+  height:2%;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
@@ -302,3 +354,28 @@ body{
   outline:none
 }
 
+.loading-wrapper{
+  margin: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  scale: 1.5;
+  width: 60px;
+  aspect-ratio: 2;
+  --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
+  background: 
+    var(--_g) 0%   50%,
+    var(--_g) 50%  50%,
+    var(--_g) 100% 50%;
+  background-size: calc(100%/3) 50%;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {
+    20%{background-position:0%   0%, 50%  50%,100%  50%}
+    40%{background-position:0% 100%, 50%   0%,100%  50%}
+    60%{background-position:0%  50%, 50% 100%,100%   0%}
+    80%{background-position:0%  50%, 50%  50%,100% 100%}
+}

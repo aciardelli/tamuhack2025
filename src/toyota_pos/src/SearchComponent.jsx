@@ -5,8 +5,10 @@ import { useState } from 'react'
 
 function SearchComponent({ listenForPrompt }){
     const [prompt, setPrompt] = useState("")
+    const [loading, setLoading] = useState(true)
 
     const handlePromptReceived = (data) => {
+        setLoading(true)
         listenForPrompt(data)
     }
 
@@ -16,6 +18,9 @@ function SearchComponent({ listenForPrompt }){
             <img src="salesman.png" className="looking-down"></img>
             <SearchBar listenForPrompt={handlePromptReceived}></SearchBar>
             <SearchSuggestions></SearchSuggestions>
+            {loading && <div className="loading-wrapper">
+                <div className="loader"></div>
+            </div>}
         </div>
     )
 }

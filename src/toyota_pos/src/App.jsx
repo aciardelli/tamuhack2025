@@ -10,6 +10,7 @@ function App() {
 
   const [prompt, setPrompt] = useState([])
 
+
   const handlePrompt = (data) => {
     console.log(data)
     setPrompt(data)
@@ -18,8 +19,11 @@ function App() {
 
   return (
     <>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+    </style>
       <div className = "main-box"> 
-        {search ? <SearchComponent listenForPrompt={handlePrompt}></SearchComponent> : <ListComponent message={prompt.explanation}data={prompt.data}></ListComponent>}
+        {search ? <SearchComponent listenForPrompt={handlePrompt}></SearchComponent> : <ListComponent message={prompt.explanation}data={prompt.data}></ListComponent>} 
       </div>
     </>
   )
