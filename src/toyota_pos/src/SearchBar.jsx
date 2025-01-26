@@ -4,6 +4,7 @@ function SearchBar({ listenForPrompt, mini, loadSignal }){
     const [text, setText] = useState("")
     const [opacity, setOpacity] = useState(0)
     const [anim, setAnim] = useState("")
+    const [load, setLoad] = useState(false)
 
     const [prompt, setPrompt] = useState("")
 
@@ -19,7 +20,11 @@ function SearchBar({ listenForPrompt, mini, loadSignal }){
     }, [])
 
     const handleSubmit = async () => {
-        loadSignal()
+        if(loadSignal){
+            loadSignal()
+        }else{
+            setLoad(true)
+        }
         console.log("submitting")
         try{
             const response = await fetch("http://localhost:3000/api/userSearch", {
@@ -53,7 +58,12 @@ function SearchBar({ listenForPrompt, mini, loadSignal }){
         )
     }else{
         return(
+            <>
             <input type="text" className="search-box-mini" onChange={handleInputChange} onKeyDown={handleKeyDown} />
+            <div className="load-wrapper">
+                <div className="loader"></div>
+            </div>
+            </>
         )
     }
     
