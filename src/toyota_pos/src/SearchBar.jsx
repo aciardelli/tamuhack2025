@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-function SearchBar({listenForPrompt, height, width}){
+function SearchBar({ listenForPrompt, mini }){
     const [text, setText] = useState("")
     const [opacity, setOpacity] = useState(0)
 
@@ -18,6 +18,7 @@ function SearchBar({listenForPrompt, height, width}){
     }, [])
 
     const handleSubmit = async () => {
+        console.log("submitting")
         try{
             const response = await fetch("http://localhost:3000/api/userSearch", {
                 method: 'POST',
@@ -27,8 +28,7 @@ function SearchBar({listenForPrompt, height, width}){
                 body: JSON.stringify({ "query": text })
             })
             const data = await response.json()
-            console.log(typeof data.choices[0].message.content)
-            listenForPrompt(data.choices[0].message.content)
+            listenForPrompt(data)
         } catch(error){
             console.error("Error: ", error)
         }
@@ -43,9 +43,16 @@ function SearchBar({listenForPrompt, height, width}){
     const handleInputChange = (event) => {
         setText(event.target.value)
     }
-    return(
-        <input placeholder = "Ask me about cars" className = "search-box" onChange={handleInputChange} style={{ opacity: opacity, height: height , width: width}} onKeyDown={handleKeyDown}></input>
-    )
+    if(!mini){
+        return(
+            <input placeholder = "Ask me about cars" className = "search-box" onChange={handleInputChange} style={{ opacity: opacity }} onKeyDown={handleKeyDown}></input>
+        )
+    }else{
+        return(
+            <input type="text" className="search-box-mini" onChange={handleInputChange} onKeyDown={handleKeyDown} />
+        )
+    }
+    
 }
 
 export default SearchBar

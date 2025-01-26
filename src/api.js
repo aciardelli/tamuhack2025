@@ -59,7 +59,6 @@ app.post("/api/userSearch", async (req, res) => {
   console.log(gpt_query)
   try {
     const { rows } = await pool.query(gpt_query);
-    console.log(rows)
     const package = res.json({
       data: rows,
       explanation: gpt_description
