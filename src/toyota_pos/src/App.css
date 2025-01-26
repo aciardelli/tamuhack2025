@@ -242,6 +242,10 @@ body{
   flex-direction: column;
 }
 
+.information-wrapper h3 {
+  margin: 0.75rem;
+}
+
 .picture-wrapper{
   display: flex;
   align-items: center;
@@ -318,6 +322,7 @@ body{
   height: 10%;
   width: 100%;
   /* background-color: purple; */
+  background: linear-gradient(to bottom, #ffffff, #cccccc);
   border-top: #171B30;
   border-top-width: 1px;
   display: flex;

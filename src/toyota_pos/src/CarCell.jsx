@@ -39,27 +39,33 @@ function CarCell({data, order}){
             <div className="wrapper-wrapper">
                 <div className="information-wrapper">
                     <h2 className="car-name">{data.model_year} Toyota {data.car_title}</h2>
-                    <h2 className="car-price">{parseFloat(data.msrp > 0 ? data.msrp : data.shown_price).toLocaleString('en-US', {
+                    <h2 className="car-price">MSRP: {parseFloat(data.msrp > 0 ? data.msrp : data.shown_price).toLocaleString('en-US', {
                         style: 'currency',
                         currency: 'USD',
                         minimumFractionDigits: 0,
                         maximumFractionDigits: 0
                     })}</h2>
-                    {data.is_compact && <h2 className="car-type">Compact</h2>}
-                    {data.is_minivan && <h2 className="car-type">Minivan</h2>}
-                    {data.is_small_pickup && <h2 className = "car-type">Small Pickup</h2>}
-                    {data.is_small_suv && <h2 className = "car-type">Small SUV</h2>}
-                    {data.is_standard_pickup && <h2 className = "car-type">Standard Pickup</h2>}
-                    {data.is_standard_suv && <h2 className = "car-type">Standard SUV</h2>}
-                    {data.is_subcompact && <h2 className = "car-type">Subcompact</h2>}
-                    {data.highway_mpg > 0 && <h2 className="mpg">{data.highway_mpg} MPG</h2>}
-                    {expanded && data.horsepower > 0 && <h2 className="horsepower">{data.horsepower} Horsepower</h2>}
-                    {data.cylinders > 0 && expanded && <h2 className="cylinders">{data.cylinders} Cylinders</h2>}
-                    {data.is_4wd && expanded && <h2 className = "wheel-drive">4 Wheel Drive</h2>}
-                    {data.is_fwd && expanded && <h2 className = "wheel-drive">Front Wheel Drive</h2>}
-                    {data.is_rwd && expanded && <h2 className = "wheel-drive">Rear Wheel Drive</h2>}
-                    {data.is_gas && expanded && <h2 className="powered">Gas-powered</h2>}
-                    {data.is_electric && expanded && <h2 className = "powered">Electric-powered</h2>}
+                    {data.is_compact && <h3 className="car-type">Compact</h3>}
+                    {data.is_minivan && <h3 className="car-type">Minivan</h3>}
+                    {data.is_small_pickup && <h3 className="car-type">Small Pickup</h3>}
+                    {data.is_small_suv && <h3 className="car-type">Small SUV</h3>}
+                    {data.is_standard_pickup && <h3 className="car-type">Standard Pickup</h3>}
+                    {data.is_standard_suv && <h3 className="car-type">Standard SUV</h3>}
+                    {data.is_subcompact && <h3 className="car-type">Subcompact</h3>}
+                    {data.is_midsize && <h3 className="car-type">Midsize</h3>}
+                    {data.is_two_seater && <h3 className="car-type">Two Seater</h3>}
+                    {data.is_small_truck && <h3 className="car-type">Small Truck</h3>}
+                    {data.is_standard_truck && <h3 className="car-type">Standard Truck</h3>}
+                    {data.highway_mpg > 0 && <h3 className="mpg">{data.highway_mpg} MPG</h3>}
+                    {expanded && data.horsepower > 0 && <h3 className="horsepower">{data.horsepower} Horsepower</h3>}
+                    {data.cylinders > 0 && expanded && <h3 className="cylinders">{data.cylinders} Cylinders</h3>}
+                    {data.is_4wd && expanded && <h3 className = "wheel-drive">4 Wheel Drive</h3>}
+                    {data.is_fwd && expanded && <h3 className = "wheel-drive">Front Wheel Drive</h3>}
+                    {data.is_rwd && expanded && <h3 className = "wheel-drive">Rear Wheel Drive</h3>}
+                    {data.is_gas && !data.is_electric && expanded && <h3 className="powered">Gas-powered</h3>}
+                    {data.is_electric && !data.is_gas && expanded && <h3 className = "powered">Electric-powered</h3>}
+                    {data.is_electric && data.is_gas && expanded && <h3 className = "powered">Hybrid</h3>}
+
                 </div>
          
                 <div className="picture-wrapper">
